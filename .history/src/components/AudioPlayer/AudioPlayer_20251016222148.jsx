@@ -4,6 +4,7 @@ import styles from './AudioPlayer.module.css';
 
 export default function AudioPlayer() {
   const { currentEpisode, isPlaying, progress, duration, seek, pause, resume } = useAudio();
+  
   const [isExpanded, setIsExpanded] = useState(false);
 
   // Confirm before leaving during playback

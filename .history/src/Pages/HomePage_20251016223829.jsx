@@ -6,7 +6,6 @@ import ShowCarousel from "../components/ShowCarousel/ShowCarousel";
 import Pagination from "../components/Pagination";
 import styles from "./HomePage.module.css";
 
-
 export default function HomePage({ genres, recommendedShows }) {
   return (
     <>

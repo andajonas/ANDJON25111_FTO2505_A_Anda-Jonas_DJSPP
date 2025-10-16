@@ -4,8 +4,37 @@ import styles from './AudioPlayer.module.css';
 
 export default function AudioPlayer() {
   const { currentEpisode, isPlaying, progress, duration, seek, pause, resume } = useAudio();
-  const [isExpanded, setIsExpanded] = useState(false);
 
+
+  const [isExpanded, setIsExpanded] = useState(false);
+// 🆕 TEMPORARY: Test if player renders
+  const displayEpisode = currentEpisode || {
+    id: 'test',
+    title: 'Click play on any episode to start listening',
+    showTitle: 'Podcast App',
+    showImage: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjNGE5MGUyIi8+CjxwYXRoIGQ9Ik0xNiAxMkgyNFYyOEgxNloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=',
+    audio: 'https://www.soundjay.com/button/button-1.mp3'
+  };
+
+  if (!currentEpisode) {
+    return (
+      <div className={styles.audioPlayer}>
+        <div className={styles.playerContent}>
+          <div className={styles.episodeInfo}>
+            <div className={styles.episodeDetails}>
+              <h4 className={styles.episodeTitle}>Ready to listen</h4>
+              <p className={styles.showTitle}>Click play on any episode</p>
+            </div>
+          </div>
+          <div className={styles.controls}>
+            <button className={styles.controlButton} disabled>
+              ▶️
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
   // Confirm before leaving during playback
   useEffect(() => {
     const handleBeforeUnload = (e) => {

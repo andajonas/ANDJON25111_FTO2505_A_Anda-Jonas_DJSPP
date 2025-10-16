@@ -5,7 +5,7 @@ import PodcastGrid from "../components/PodcastGrid";
 import ShowCarousel from "../components/ShowCarousel/ShowCarousel";
 import Pagination from "../components/Pagination";
 import styles from "./HomePage.module.css";
-
+import { useAud}
 
 export default function HomePage({ genres, recommendedShows }) {
   return (
