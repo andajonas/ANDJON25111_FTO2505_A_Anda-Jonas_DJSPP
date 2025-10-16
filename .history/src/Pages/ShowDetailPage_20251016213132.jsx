@@ -123,7 +123,7 @@ export default function ShowDetailPage({ genres }) {
         </div>
       </div>
 
-      <SeasonNavigation seasons={show.seasons} show={show} />
+      <SeasonNavigation seasons={show.seasons}  show={}/>
     </div>
   );
 }
