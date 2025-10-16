@@ -1,0 +1,66 @@
+.appHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .logo h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .navLink {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: color 0.2s ease;
+  }
+  
+  .navLink:hover {
+    color: #4a90e2;
+  }
+  
+  .favoritesBadge {
+    background: #ff6b6b;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -5px;
+    right: -10px;
+  }
+  
+  /* Dark mode support */
+  [data-theme="dark"] .appHeader {
+    background: #1a1a1a;
+    color: white;
+  }
+  
+  [data-theme="dark"] .navLink {
+    color: white;
+  }
+  
+  [data-theme="dark"] .navLink:hover {
+    color: #4a90e2;
+  }
