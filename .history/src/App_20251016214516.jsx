@@ -10,7 +10,7 @@ import Header from "./components/Header";
 import AudioPlayer from "./components/AudioPlayer/AudioPlayer";
 import HomePage from "./pages/HomePage";
 import ShowDetailPage from "./Pages/ShowDetailPage";
-import FavoritesPage from "./Pages/FavoritesPage/FavoritesPage";
+import FavoritesPage from "./ages/FavoritesPage/FavoritesPage";
 import styles from "./App.module.css";
 
 export default function App() {

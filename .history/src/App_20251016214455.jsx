@@ -9,8 +9,8 @@ import { genres } from "./data";
 import Header from "./components/Header";
 import AudioPlayer from "./components/AudioPlayer/AudioPlayer";
 import HomePage from "./pages/HomePage";
-import ShowDetailPage from "./Pages/ShowDetailPage";
-import FavoritesPage from "./Pages/FavoritesPage/FavoritesPage";
+import ShowDetailPage from "./pages/ShowDetailPage";
+import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import styles from "./App.module.css";
 
 export default function App() {
