@@ -9,7 +9,7 @@ export function AudioProvider({ children }) {
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   
-  // Listening Progress State
+  // 🆕 ADD THIS LINE - Listening Progress State
   const [listeningProgress, setListeningProgress] = useState({});
 
   // Load episode and play
@@ -33,7 +33,7 @@ export function AudioProvider({ children }) {
     }
   };
 
-  // - Progress Tracking
+  // 🆕 ADD THIS FUNCTION - Progress Tracking
   const updateListeningProgress = (episodeId, progress, duration) => {
     const progressPercent = duration > 0 ? (progress / duration) * 100 : 0;
     
@@ -60,7 +60,7 @@ export function AudioProvider({ children }) {
     localStorage.setItem('podcast-progress', JSON.stringify(savedProgress));
   };
 
-  // Load progress from localStorage on mount
+  // 🆕 ADD THIS - Load progress from localStorage on mount
   useEffect(() => {
     const savedProgress = localStorage.getItem('podcast-progress');
     if (savedProgress) {
@@ -77,7 +77,7 @@ export function AudioProvider({ children }) {
       setProgress(audio.currentTime);
       setDuration(audio.duration || 0);
       
-      // Update listening progress when audio plays
+      // 🆕 ADD THIS LINE - Update listening progress when audio plays
       if (currentEpisode) {
         updateListeningProgress(currentEpisode.id, audio.currentTime, audio.duration);
       }
@@ -97,12 +97,12 @@ export function AudioProvider({ children }) {
       audio.removeEventListener('loadedmetadata', updateProgress);
       audio.removeEventListener('ended', handleEnded);
     };
-  }, [currentEpisode]); //currentEpisode to dependencies
+  }, [currentEpisode]); // 🆕 ADD currentEpisode to dependencies
 
   // Auto-play when currentEpisode changes
   useEffect(() => {
     if (currentEpisode && audioRef.current) {
-      // Resume from saved position if available
+      // 🆕 ADD THIS - Resume from saved position if available
       const savedProgress = listeningProgress[currentEpisode.id];
       if (savedProgress && !savedProgress.completed) {
         audioRef.current.currentTime = savedProgress.lastPosition || 0;
@@ -120,7 +120,7 @@ export function AudioProvider({ children }) {
     }
   };
 
-  // Reset progress for an episode
+  // 🆕 ADD THIS FUNCTION - Reset progress for an episode
   const resetProgress = (episodeId) => {
     const newProgress = { ...listeningProgress };
     delete newProgress[episodeId];
@@ -150,7 +150,7 @@ export function AudioProvider({ children }) {
         setIsPlaying(true);
       }
     },
-   
+    // 🆕 ADD THESE NEW VALUES to the context
     listeningProgress,
     updateListeningProgress,
     resetProgress

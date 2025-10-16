@@ -120,7 +120,7 @@ export function AudioProvider({ children }) {
     }
   };
 
-  // Reset progress for an episode
+  // 🆕 ADD THIS FUNCTION - Reset progress for an episode
   const resetProgress = (episodeId) => {
     const newProgress = { ...listeningProgress };
     delete newProgress[episodeId];
@@ -150,7 +150,7 @@ export function AudioProvider({ children }) {
         setIsPlaying(true);
       }
     },
-   
+    // 🆕 ADD THESE NEW VALUES to the context
     listeningProgress,
     updateListeningProgress,
     resetProgress

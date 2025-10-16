@@ -97,12 +97,12 @@ export function AudioProvider({ children }) {
       audio.removeEventListener('loadedmetadata', updateProgress);
       audio.removeEventListener('ended', handleEnded);
     };
-  }, [currentEpisode]); //currentEpisode to dependencies
+  }, [currentEpisode]); // 🆕 ADD currentEpisode to dependencies
 
   // Auto-play when currentEpisode changes
   useEffect(() => {
     if (currentEpisode && audioRef.current) {
-      // Resume from saved position if available
+      // 🆕 ADD THIS - Resume from saved position if available
       const savedProgress = listeningProgress[currentEpisode.id];
       if (savedProgress && !savedProgress.completed) {
         audioRef.current.currentTime = savedProgress.lastPosition || 0;
@@ -120,7 +120,7 @@ export function AudioProvider({ children }) {
     }
   };
 
-  // Reset progress for an episode
+  // 🆕 ADD THIS FUNCTION - Reset progress for an episode
   const resetProgress = (episodeId) => {
     const newProgress = { ...listeningProgress };
     delete newProgress[episodeId];
@@ -150,7 +150,7 @@ export function AudioProvider({ children }) {
         setIsPlaying(true);
       }
     },
-   
+    // 🆕 ADD THESE NEW VALUES to the context
     listeningProgress,
     updateListeningProgress,
     resetProgress

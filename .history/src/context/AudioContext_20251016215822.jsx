@@ -150,7 +150,7 @@ export function AudioProvider({ children }) {
         setIsPlaying(true);
       }
     },
-   
+    // 🆕 ADD THESE NEW VALUES to the context
     listeningProgress,
     updateListeningProgress,
     resetProgress
