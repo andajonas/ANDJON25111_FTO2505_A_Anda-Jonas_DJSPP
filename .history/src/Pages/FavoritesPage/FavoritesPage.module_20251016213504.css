@@ -1,0 +1,151 @@
+.favoritesPage {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .header h1 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .sortSelect {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+  }
+  
+  .emptyState {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #666;
+  }
+  
+  .emptyHeart {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .emptyState h2 {
+    margin: 0 0 1rem 0;
+    color: #333;
+  }
+  
+  .showGroup {
+    margin-bottom: 3rem;
+  }
+  
+  .showTitle {
+    border-bottom: 2px solid #4a90e2;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .episodesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .favoriteCard {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 1rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .favoriteCard:hover {
+    transform: translateY(-2px);
+  }
+  
+  .episodeImage {
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    object-fit: cover;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  
+  .episodeInfo {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .episodeInfo h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  .episodeInfo h3:hover {
+    color: #4a90e2;
+  }
+  
+  .seasonInfo {
+    margin: 0 0 0.25rem 0;
+    font-size: 0.85rem;
+    color: #666;
+  }
+  
+  .addedDate {
+    margin: 0 0 1rem 0;
+    font-size: 0.8rem;
+    color: #999;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .playButton {
+    background: #4a90e2;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+  }
+  
+  .removeButton {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+  }
+  
+  /* Dark mode support */
+  [data-theme="dark"] .favoriteCard {
+    background: #1a1a1a;
+    color: white;
+  }
+  
+  [data-theme="dark"] .episodeInfo h3 {
+    color: white;
+  }
+  
+  [data-theme="dark"] .header h1 {
+    color: white;
+  }
+  
+  [data-theme="dark"] .showTitle {
+    color: white;
+  }
