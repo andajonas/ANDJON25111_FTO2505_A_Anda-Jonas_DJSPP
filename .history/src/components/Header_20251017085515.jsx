@@ -22,7 +22,7 @@ export default function Header() {
             <span className={styles.favoritesBadge}>{favoritesCount}</span>
           )}
         </Link>
-        {/*THEME TOGGLE */}
+        {/* THEME TOGGLE */}
         <ThemeToggle />
       </nav>
     </header>
