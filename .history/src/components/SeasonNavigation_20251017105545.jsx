@@ -49,6 +49,14 @@ export default function SeasonNavigation({ seasons, show }) {
     toggleFavorite(episode, show, season);
   };
 
+  const getFallbackAudioUrl = () => {
+    const audioOptions = [
+      'https://www.soundjay.com/button/button-1.mp3',
+      'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+    ];
+    return audioOptions[Math.floor(Math.random() * audioOptions.length)];
+  };
+
   /**
    * Shortens episode description to a maximum length
    * @param {string} description - The full episode description

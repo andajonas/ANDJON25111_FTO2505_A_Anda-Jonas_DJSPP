@@ -35,7 +35,13 @@ export default function SeasonNavigation({ seasons, show }) {
    * @param {Object} season - The season containing the episode
    */
   const handlePlayEpisode = (episode, season) => {
-    playEpisode(episode, show);
+    // 🆕 Ensure episode has audio URL
+    const episodeWithAudio = {
+      ...episode,
+      audio: episode.audio || getFallbackAudioUrl()
+    };
+    
+    playEpisode(episodeWithAudio, show);
   };
 
   /**
@@ -47,6 +53,14 @@ export default function SeasonNavigation({ seasons, show }) {
   const handleToggleFavorite = (episode, season, e) => {
     e.stopPropagation(); // Prevent expanding season
     toggleFavorite(episode, show, season);
+  };
+
+  const getFallbackAudioUrl = () => {
+    const audioOptions = [
+      'https://www.soundjay.com/button/button-1.mp3',
+      'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+    ];
+    return audioOptions[Math.floor(Math.random() * audioOptions.length)];
   };
 
   /**

@@ -48,6 +48,7 @@ export default function SeasonNavigation({ seasons, show }) {
     e.stopPropagation(); // Prevent expanding season
     toggleFavorite(episode, show, season);
   };
+  
 
   /**
    * Shortens episode description to a maximum length

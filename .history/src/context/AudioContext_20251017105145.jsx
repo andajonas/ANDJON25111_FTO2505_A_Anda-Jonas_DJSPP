@@ -8,14 +8,11 @@ export function AudioProvider({ children }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
-  
-  // Listening Progress State
-  const [listeningProgress, setListeningProgress] = useState({});
 
-  // Load episode and play
+  // Play episode function
   const playEpisode = (episode, show) => {
+    // If same episode, toggle play/pause
     if (currentEpisode?.id === episode.id) {
-      // Toggle play/pause for current episode
       if (isPlaying) {
         audioRef.current.pause();
       } else {
@@ -33,41 +30,6 @@ export function AudioProvider({ children }) {
     }
   };
 
-  // - Progress Tracking
-  const updateListeningProgress = (episodeId, progress, duration) => {
-    const progressPercent = duration > 0 ? (progress / duration) * 100 : 0;
-    
-    setListeningProgress(prev => ({
-      ...prev,
-      [episodeId]: {
-        progress: progressPercent,
-        lastPosition: progress,
-        duration,
-        lastUpdated: new Date().toISOString(),
-        completed: progressPercent >= 95 // Mark as completed if 95% watched
-      }
-    }));
-
-    // Save to localStorage
-    const savedProgress = JSON.parse(localStorage.getItem('podcast-progress') || '{}');
-    savedProgress[episodeId] = {
-      progress: progressPercent,
-      lastPosition: progress,
-      duration,
-      lastUpdated: new Date().toISOString(),
-      completed: progressPercent >= 95
-    };
-    localStorage.setItem('podcast-progress', JSON.stringify(savedProgress));
-  };
-
-  // Load progress from localStorage on mount
-  useEffect(() => {
-    const savedProgress = localStorage.getItem('podcast-progress');
-    if (savedProgress) {
-      setListeningProgress(JSON.parse(savedProgress));
-    }
-  }, []);
-
   // Audio event handlers
   useEffect(() => {
     const audio = audioRef.current;
@@ -76,11 +38,6 @@ export function AudioProvider({ children }) {
     const updateProgress = () => {
       setProgress(audio.currentTime);
       setDuration(audio.duration || 0);
-      
-      // Update listening progress when audio plays
-      if (currentEpisode) {
-        updateListeningProgress(currentEpisode.id, audio.currentTime, audio.duration);
-      }
     };
 
     const handleEnded = () => {
@@ -97,38 +54,21 @@ export function AudioProvider({ children }) {
       audio.removeEventListener('loadedmetadata', updateProgress);
       audio.removeEventListener('ended', handleEnded);
     };
-  }, [currentEpisode]); //currentEpisode to dependencies
+  }, []);
 
   // Auto-play when currentEpisode changes
   useEffect(() => {
-    if (currentEpisode && audioRef.current) {
-      // Resume from saved position if available
-      const savedProgress = listeningProgress[currentEpisode.id];
-      if (savedProgress && !savedProgress.completed) {
-        audioRef.current.currentTime = savedProgress.lastPosition || 0;
-      }
-      
-      audioRef.current.src = currentEpisode.audio; // Using placeholder audio
+    if (currentEpisode && audioRef.current && isPlaying) {
+      audioRef.current.src = currentEpisode.audio;
       audioRef.current.play().catch(console.error);
     }
-  }, [currentEpisode]);
+  }, [currentEpisode, isPlaying]);
 
   const seek = (time) => {
     if (audioRef.current) {
       audioRef.current.currentTime = time;
       setProgress(time);
     }
-  };
-
-  // Reset progress for an episode
-  const resetProgress = (episodeId) => {
-    const newProgress = { ...listeningProgress };
-    delete newProgress[episodeId];
-    setListeningProgress(newProgress);
-    
-    const savedProgress = JSON.parse(localStorage.getItem('podcast-progress') || '{}');
-    delete savedProgress[episodeId];
-    localStorage.setItem('podcast-progress', JSON.stringify(savedProgress));
   };
 
   const value = {
@@ -149,11 +89,7 @@ export function AudioProvider({ children }) {
         audioRef.current.play();
         setIsPlaying(true);
       }
-    },
-   
-    listeningProgress,
-    updateListeningProgress,
-    resetProgress
+    }
   };
 
   return (
